@@ -3,9 +3,9 @@ defmodule BasketballWebsite do
     extract(data, split_path(path))
   end
 
-  def extract(data, []), do: data
+  defp extract(data, []), do: data
 
-  def extract(data, [head | tail]) do
+  defp extract(data, [head | tail]) do
     extract(data[head], tail)
   end
 
@@ -13,5 +13,5 @@ defmodule BasketballWebsite do
     get_in(data, split_path(path))
   end
 
-  def split_path(path), do: path |> String.split(".", trim: true)
+  defp split_path(path), do: path |> String.split(".", trim: true)
 end
