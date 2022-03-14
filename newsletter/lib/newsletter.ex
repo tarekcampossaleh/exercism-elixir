@@ -8,6 +8,11 @@ defmodule Newsletter do
   def close_log(pid), do: File.close(pid)
 
   def send_newsletter(emails_path, log_path, send_fun) do
-    # Please implement the send_newsletter/3 function
+    log_file = open_log(log_path)
+
+    read_emails(emails_path)
+    |> Enum.each(&(send_fun.(&1) == :ok and log_sent_email(log_file, &1)))
+
+    close_log(log_file)
   end
 end
